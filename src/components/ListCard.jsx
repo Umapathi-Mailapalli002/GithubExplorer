@@ -5,8 +5,7 @@ const ListCard = () => (
   <Card.Title
     title="Card Title"
     subtitle="Card Subtitle"
-    left={(props) => <Avatar.Icon {...props} icon="folder" />}
-    right={(props) => <IconButton {...props} icon="dots-vertical" onPress={() => {}} />}
+    left={(props) => <Avatar.Image size={50} source={{uri: 'https://avatars.githubusercontent.com/u/146647639?v=4'}} />}
   />
 );
 

@@ -1,5 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import MaskedView from '@react-native-masked-view/masked-view';
+import LinearGradient from 'react-native-linear-gradient';
 import { Button, Text } from "react-native-paper";
 export default function GetStartedScreen() {
 
@@ -24,6 +26,17 @@ export default function GetStartedScreen() {
       >
         Get Started
       </Button>
+      <MaskedView
+            maskElement={
+              <Text style={styles.text}>Ravihjbjbjbjbjbjbjbjbj</Text>
+            }>
+            <LinearGradient
+              colors={['#ff6a00', '#ee0979']} // Gradient colors
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              style={{flex: 1}}
+            />
+          </MaskedView>
     </View>
   );
 }

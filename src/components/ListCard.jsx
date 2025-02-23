@@ -7,7 +7,7 @@ const ListCard = () => {
   const theme = useTheme();
 
   return (
-    <View elevation={5} style={styles.card}>
+    <View style={styles.card}>
       <Card.Title
         mode="contained"
         style={{backgroundColor: theme.colors.background}}
@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     maxHeight: 75,
-    borderWidth: 1, // Border thickness
-    borderColor: 'gray',
-    borderRadius: 10
+    shadowColor: 'blue',
+    borderColor: 'red',
+    elevation: 5
   },
 });
 export default ListCard;

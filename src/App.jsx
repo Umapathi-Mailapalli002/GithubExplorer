@@ -7,6 +7,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {PaperProvider, MD3DarkTheme, MD3LightTheme} from 'react-native-paper';
 import ToggleButton from './components/ToggleButton';
 import SearchScreen from './screens/SearchScreen';
+import AppNavigation from './navigation/AppNavigation';
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
     const onToggleSwitch = () => setIsDarkMode(!isDarkMode);
@@ -15,8 +16,7 @@ export default function App() {
       <SafeAreaProvider>
         <PaperProvider theme={isDarkMode ? MD3DarkTheme : MD3LightTheme}>
           <ToggleButton isDarkMode={isDarkMode} onToggleSwitch={onToggleSwitch}/>
-        {/* <GetStartedScreen /> */}
-        <SearchScreen />
+       <AppNavigation />
         </PaperProvider>
       </SafeAreaProvider>
     </>

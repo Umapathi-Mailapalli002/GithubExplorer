@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-
+import AnimatedText from "react-native-paper/lib/typescript/components/Typography/AnimatedText";
 const FavoritesScreen = () => {
   return (
     <View>
-      <Text>FavoritesScreen</Text>
+      <AnimatedText>FavoritesScreen</AnimatedText>
     </View>
   )
 }

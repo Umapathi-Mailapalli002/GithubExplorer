@@ -9,8 +9,8 @@ const ListCard = () => {
   return (
     <View style={styles.card}>
       <Card.Title
-        mode="contained"
-        style={{backgroundColor: theme.colors.background}}
+        mode="elevated"
+        style={{backgroundColor: theme.colors.background, borderWidth: 1, borderRadius: 10, elevation: 5}}
         title="Card Title"
         titleStyle={{fontWeight: 800, fontSize: 22}}
         subtitle="Card Subtitle"
@@ -32,9 +32,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     maxHeight: 75,
-    shadowColor: 'blue',
-    borderColor: 'red',
-    elevation: 5
+    
   },
 });
 export default ListCard;

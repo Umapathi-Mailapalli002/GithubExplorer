@@ -1,14 +1,20 @@
 import React from "react";
-import { useTheme } from 'react-native-paper';
+import { useTheme } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 import { Button, Text } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+
 export default function GetStartedScreen() {
   const theme = useTheme();
   const navigation = useNavigation();
-  return (
-    <View mode="contained" style={[styles.container, {backgroundColor: theme.colors.background}]}>
 
+  const handleGetStarted = () => {
+    // Replace the current screen with the main flow
+    navigation.replace("Main");
+  };
+
+  return (
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       {/* Title */}
       <Text variant="headlineLarge" style={styles.title}>
         GitHub Explorer
@@ -21,10 +27,7 @@ export default function GetStartedScreen() {
       </Text>
 
       {/* Get Started Button */}
-      <Button onPress={() => navigation.navigate("Search")}
-        mode="contained"
-        style={styles.button}
-      >
+      <Button onPress={handleGetStarted} mode="contained" style={styles.button}>
         Get Started
       </Button>
     </View>
@@ -38,11 +41,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
   },
-  logo: {
-    width: 120,
-    height: 120,
-    marginBottom: 20,
-  },
   title: {
     fontWeight: "bold",
     textAlign: "center",
@@ -50,12 +48,11 @@ const styles = StyleSheet.create({
   },
   description: {
     textAlign: "center",
-    fontWeight: 600,
+    fontWeight: "600",
     color: "#989",
     marginBottom: 30,
   },
   button: {
     width: "80%",
-    fontWeight: 900,
   },
 });

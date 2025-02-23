@@ -2,9 +2,10 @@ import React from "react";
 import { useTheme } from 'react-native-paper';
 import { View, StyleSheet } from "react-native";
 import { Button, Text } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 export default function GetStartedScreen() {
   const theme = useTheme();
-
+  const navigation = useNavigation();
   return (
     <View mode="contained" style={[styles.container, {backgroundColor: theme.colors.background}]}>
 
@@ -20,7 +21,7 @@ export default function GetStartedScreen() {
       </Text>
 
       {/* Get Started Button */}
-      <Button
+      <Button onPress={() => navigation.navigate("SearchScreen")}
         mode="contained"
         style={styles.button}
       >

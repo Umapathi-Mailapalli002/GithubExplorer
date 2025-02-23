@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     maxHeight: 75,
   },
   cardStyle: {
-    borderWidth: 1,
+    borderWidth: .1,
     borderRadius: 10,
     borderColor: "gray",
     elevation: 3,

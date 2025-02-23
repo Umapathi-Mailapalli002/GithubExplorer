@@ -9,6 +9,7 @@ const ToggleButton = ({onToggleSwitch, isDarkMode}) => {
       style={{
         height: 50,
         display: 'flex',
+        paddingHorizontal: 15,
         flexDirection: 'row',
         gap: 12,
         justifyContent: 'flex-end',

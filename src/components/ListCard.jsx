@@ -31,9 +31,10 @@ const ListCard = () => {
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    maxHeight: 72,
-    borderRadius: 10,
-    shadowRadius: 5,
+    maxHeight: 75,
+    borderWidth: 1, // Border thickness
+    borderColor: 'gray',
+    borderRadius: 10
   },
 });
 export default ListCard;

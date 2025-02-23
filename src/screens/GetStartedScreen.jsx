@@ -21,7 +21,7 @@ export default function GetStartedScreen() {
       </Text>
 
       {/* Get Started Button */}
-      <Button onPress={() => navigation.navigate("SearchScreen")}
+      <Button onPress={() => navigation.navigate("Search")}
         mode="contained"
         style={styles.button}
       >

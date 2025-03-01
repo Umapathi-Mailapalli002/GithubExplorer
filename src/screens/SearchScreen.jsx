@@ -1,16 +1,36 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import ListCard from '../components/ListCard'
 import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { searchRepo } from '../services/api';
+import { FlatList } from 'react-native-gesture-handler';
 const SearchScreen = () => {
   const navigation = useNavigation();
+  const [searchVal, setSearchVal] = useState('')
+  const [repos, setRepos] = useState([]);
   useEffect(() => {
-    const response = searchRepo('mailapalli002');
-    console.log(response);
-  })
+    let timer;
+  
+    // Create an async function inside useEffect
+    const fetchData = async () => {
+      try {
+        const response = await searchRepo(searchVal);
+        console.log(response.items); // Log the response once it's resolved
+        setRepos(response?.items)
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+  
+    timer = setTimeout(() => {
+      fetchData(); // Call the async function inside setTimeout
+    }, 500);
+  
+    return () => clearTimeout(timer); // Cleanup the timer on unmount or dependency change
+  }, [searchVal]);
+  
   return (
    <>
    <Appbar.Header>
@@ -18,9 +38,9 @@ const SearchScreen = () => {
     </Appbar.Header>
     <View style={styles.container}>
         <View style={styles.searchbarContainer}>
-        <SearchBar />
+        <SearchBar value={searchVal} onChange={setSearchVal}/>
         </View>
-      <ListCard />
+        <FlatList data={repos} renderItem={({item}) => <ListCard />} keyExtractor={item => item.id}/>
     </View>
    </>
   )
@@ -30,9 +50,10 @@ export default SearchScreen
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        height: 600
     },
     searchbarContainer: {
-        marginBottom: 35
+        marginBottom: 15
     }
 })

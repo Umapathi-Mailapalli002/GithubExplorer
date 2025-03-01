@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Avatar, Card, IconButton, Text, useTheme } from "react-native-paper";
+import { formatUpdatedTime } from "../utils/timeFormate";
 
 const ListCard = ({title, img, des, langUsed, updatedDate}) => {
   const theme = useTheme();
@@ -17,7 +18,7 @@ const ListCard = ({title, img, des, langUsed, updatedDate}) => {
   iconColor={isLiked ? "red" : "gray"} // Change color when filled
   onPress={() => setIsLiked(!isLiked)} // Toggle state
 />
-<Text>{updatedDate ||"Updated on Jul 15, 2024"}</Text>
+<Text>{formatUpdatedTime(updatedDate) ||"Updated on Jul 15, 2024"}</Text>
 </View>
 
 const langColors = {

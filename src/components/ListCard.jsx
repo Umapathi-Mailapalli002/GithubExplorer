@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Avatar, Card, IconButton, Text, useTheme } from "react-native-paper";
 
-const ListCard = ({title, img, subtitle, langUsed}) => {
+const ListCard = ({title, img, subtitle, langUsed, updatedDate}) => {
   const theme = useTheme();
   const [isLiked, setIsLiked] = useState(false); // State to track heart icon
   const LeftContent = props => <Avatar.Image
@@ -17,10 +17,26 @@ const ListCard = ({title, img, subtitle, langUsed}) => {
   iconColor={isLiked ? "red" : "gray"} // Change color when filled
   onPress={() => setIsLiked(!isLiked)} // Toggle state
 />
+<Text>{updatedDate ||"Updated on Jul 15, 2024"}</Text>
+</View>
 
-<Text>Updated on Jul 15, 2024</Text>
-
-  </View>
+const langColors = {
+  "JavaScript": "#f1e05a",
+  "TypeScript": "#3178c6",
+  "Python": "#3572A5",
+  "Java": "#b07219",
+  "C++": "#f34b7d",
+  "Go": "#00ADD8",
+  "Rust": "#dea584",
+  "PHP": "#4F5D95",
+  "C#": "#178600",
+  "Swift": "#ffac45",
+  "Kotlin": "#A97BFF",
+  "Dart": "#00B4AB",
+  "HTML": "#e34c26",
+  "CSS": "#563d7c",
+  "Shell": "#89e051"
+};
 
   return (
     <Card style={[
@@ -32,7 +48,7 @@ const ListCard = ({title, img, subtitle, langUsed}) => {
         ]}>
     <Card.Title titleVariant="titleLarge" titleStyle={{color: '#4493f8'}} title={title || "title"} subtitle={subtitle || "subtitle"} left={LeftContent} right={RightContent}/>
     <Card.Content style={{display: 'flex', flexDirection: 'row', alignItems:'center', gap:8}}>
-      <View style={{height: 12, width: 12, borderRadius:'100%', backgroundColor: 'orange'}}></View><Text variant="titleSmall">{langUsed || "JavaScript"}</Text>
+      <View style={{height: 12, width: 12, borderRadius:50, backgroundColor: langColors[langUsed] || "orange"}}></View><Text variant="titleSmall">{langUsed || "JavaScript"}</Text>
     </Card.Content>
   </Card>
   );

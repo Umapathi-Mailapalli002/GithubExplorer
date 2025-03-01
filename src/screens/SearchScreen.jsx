@@ -40,7 +40,7 @@ const SearchScreen = () => {
         <View style={styles.searchbarContainer}>
         <SearchBar value={searchVal} onChange={setSearchVal}/>
         </View>
-        <FlatList data={repos} renderItem={({item}) => <ListCard />} keyExtractor={item => item.id}/>
+        {repos?.length > 0 ? <FlatList data={repos} renderItem={({item}) => <ListCard title={item?.full_name} des={item?.description} img={item?.owner?.avatar_url} updatedDate={item?.updated_at} langUsed={item?.language}/> } keyExtractor={item => item.id}/> : <Text>Search for get repos</Text>}
     </View>
    </>
   )

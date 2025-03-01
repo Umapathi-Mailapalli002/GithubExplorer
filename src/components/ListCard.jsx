@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Avatar, Card, IconButton, Text, useTheme } from "react-native-paper";
 
-const ListCard = ({title, img, subtitle, langUsed, updatedDate}) => {
+const ListCard = ({title, img, des, langUsed, updatedDate}) => {
   const theme = useTheme();
   const [isLiked, setIsLiked] = useState(false); // State to track heart icon
   const LeftContent = props => <Avatar.Image
@@ -46,7 +46,7 @@ const langColors = {
             shadowColor: theme.colors.onBackground, // Soft shadow
           },
         ]}>
-    <Card.Title titleVariant="titleLarge" titleStyle={{color: '#4493f8'}} title={title || "title"} subtitle={subtitle || "subtitle"} left={LeftContent} right={RightContent}/>
+    <Card.Title titleVariant="titleLarge" titleStyle={{color: '#4493f8'}} title={title || "title"} subtitle={des || "subtitle"} left={LeftContent} right={RightContent}/>
     <Card.Content style={{display: 'flex', flexDirection: 'row', alignItems:'center', gap:8}}>
       <View style={{height: 12, width: 12, borderRadius:50, backgroundColor: langColors[langUsed] || "orange"}}></View><Text variant="titleSmall">{langUsed || "JavaScript"}</Text>
     </Card.Content>

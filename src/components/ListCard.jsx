@@ -1,52 +1,45 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Avatar, Card, IconButton } from "react-native-paper";
-import { useTheme } from "react-native-paper";
+import { Avatar, Card, IconButton, Text, useTheme } from "react-native-paper";
 
-const ListCard = () => {
+const ListCard = ({title, img, subtitle, langUsed}) => {
   const theme = useTheme();
   const [isLiked, setIsLiked] = useState(false); // State to track heart icon
+  const LeftContent = props => <Avatar.Image
+  size={40}
+  source={{
+    uri: img || 'https://avatars.githubusercontent.com/u/146647639?v=4',
+  }}
+/>
+  const RightContent = props => <View style={{display: 'flex', alignItems:'flex-end', height:22, marginRight:10}}>
+  <IconButton
+  icon={isLiked ? "heart" : "heart-outline"} // Toggle icon
+  iconColor={isLiked ? "red" : "gray"} // Change color when filled
+  onPress={() => setIsLiked(!isLiked)} // Toggle state
+/>
+
+<Text>Updated on Jul 15, 2024</Text>
+
+  </View>
 
   return (
-    <View style={styles.card}>
-      <Card.Title
-        mode="contained"
-        style={[
+    <Card style={[
           styles.cardStyle,
           {
             backgroundColor: theme.colors.background,
             shadowColor: theme.colors.onBackground, // Soft shadow
           },
-        ]}
-        title="Card Title"
-        titleStyle={{ fontWeight: "800", fontSize: 22 }}
-        subtitle="Card Subtitle"
-        subtitleStyle={{ fontWeight: "500", fontSize: 17 }}
-        left={(props) => (
-          <Avatar.Image
-            size={50}
-            source={{
-              uri: "https://avatars.githubusercontent.com/u/146647639?v=4",
-            }}
-          />
-        )}
-        right={(props) => (
-          <IconButton
-            {...props}
-            icon={isLiked ? "heart" : "heart-outline"} // Toggle icon
-            iconColor={isLiked ? "red" : "gray"} // Change color when filled
-            onPress={() => setIsLiked(!isLiked)} // Toggle state
-          />
-        )}
-      />
-    </View>
+        ]}>
+    <Card.Title titleVariant="titleLarge" titleStyle={{color: '#4493f8'}} title={title || "title"} subtitle={subtitle || "subtitle"} left={LeftContent} right={RightContent}/>
+    <Card.Content style={{display: 'flex', flexDirection: 'row', alignItems:'center', gap:8}}>
+      <View style={{height: 12, width: 12, borderRadius:'100%', backgroundColor: 'orange'}}></View><Text variant="titleSmall">{langUsed || "JavaScript"}</Text>
+    </Card.Content>
+  </Card>
   );
 };
-
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    maxHeight: 75,
   },
   cardStyle: {
     borderWidth: .1,
@@ -57,6 +50,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 5,
   },
+  text:{
+    color:'#000'
+  }
 });
 
 export default ListCard;

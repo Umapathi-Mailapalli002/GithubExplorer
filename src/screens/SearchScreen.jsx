@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import SearchBar from '../components/SearchBar'
 import ListCard from '../components/ListCard'
 import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { searchRepo } from '../services/api';
 const SearchScreen = () => {
   const navigation = useNavigation();
+  useEffect(() => {
+    const response = searchRepo('mailapalli002');
+    console.log(response);
+  })
   return (
    <>
    <Appbar.Header>

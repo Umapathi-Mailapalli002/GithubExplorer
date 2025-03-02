@@ -77,7 +77,7 @@ const RepositoryDetails = () => {
               this is my page for the github repos check it out for more
               projects this is i more text of test the card{' '}
             </Text>
-            <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginVertical: 8}}>
+            <View style={{display: 'flex',flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-around', marginVertical: 8}}>
             <Chip >Html</Chip> 
             <Chip >Css</Chip>
             <Chip >Javascript</Chip>

@@ -3,9 +3,9 @@ import {StyleSheet, View} from 'react-native';
 import {Avatar, Card, IconButton, Text, useTheme} from 'react-native-paper';
 import {formatUpdatedTime} from '../utils/timeFormate';
 
-const ListCard = ({title, img, des, langUsed, updatedDate}) => {
+const ListCard = ({title, img, des, langUsed, updatedDate, click}) => {
   const theme = useTheme();
-  const [isLiked, setIsLiked] = useState(false); // State to track heart icon
+  const [isLiked, setIsLiked] = useState(false);
   const LeftContent = props => (
     <Avatar.Image
       size={40}
@@ -45,10 +45,11 @@ const ListCard = ({title, img, des, langUsed, updatedDate}) => {
     HTML: '#e34c26',
     CSS: '#563d7c',
     Shell: '#89e051',
+    EJS: '#a91e50'
   };
 
   return (
-    <Card
+    <Card onPress={click}
       style={[
         styles.cardStyle,
         {

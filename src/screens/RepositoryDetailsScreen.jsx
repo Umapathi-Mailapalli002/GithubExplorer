@@ -1,11 +1,13 @@
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
 import { Card, Text, useTheme} from 'react-native-paper';
 import React from 'react'
+import NavigationBottom from '../components/NavigationBottom';
 
 const RepositoryDetails = () => {
   const theme = useTheme();
 
   return (
+    <>
     <View style={styles.container}>
       <Text style={styles.heading}>--- Repository Details ---</Text>
       <Card style={{paddingVertical: 8}}>
@@ -63,7 +65,8 @@ const RepositoryDetails = () => {
           <TouchableOpacity accessibilityRole='link' onPress={() => Linking.openURL('https://reactnative.dev/docs/touchableopacity')} style={{backgroundColor: theme.colors.primary, padding: 10, borderRadius: 18, fontWeight: 'bold'}}><Text style={{color: theme.colors.background}}>Check Out!</Text></TouchableOpacity>
         </Card.Actions>
       </Card>
-    </View>
+    </View>    
+    </>
   )
 }
 

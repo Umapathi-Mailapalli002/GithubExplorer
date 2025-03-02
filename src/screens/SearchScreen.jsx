@@ -14,9 +14,11 @@ const SearchScreen = () => {
   const [searchVal, setSearchVal] = useState('');
   const [repos, setRepos] = useState([]);
   const theme = useTheme();
+  const handleClick = (item) => {
+    navigation.navigate('repo-details', item);
+  }
   useEffect(() => {
     let timer;
-
     // Create an async function inside useEffect
     const fetchData = async () => {
       try {
@@ -74,6 +76,7 @@ const SearchScreen = () => {
                 img={item?.owner?.avatar_url}
                 updatedDate={item?.updated_at}
                 langUsed={item?.language}
+                click={() => handleClick(item)}
               />
             )}
             keyExtractor={item => item.id}

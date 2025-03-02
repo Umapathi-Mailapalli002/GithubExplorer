@@ -25,8 +25,10 @@ const SearchScreen = () => {
     };
   
     timer = setTimeout(() => {
-      fetchData(); // Call the async function inside setTimeout
-    }, 500);
+      if (searchVal) {
+        fetchData();
+      }
+    }, 3000);
   
     return () => clearTimeout(timer); // Cleanup the timer on unmount or dependency change
   }, [searchVal]);

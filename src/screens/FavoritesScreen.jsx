@@ -1,21 +1,24 @@
-import { StyleSheet, View } from 'react-native'
-import { Text } from 'react-native-paper'
-import React from 'react'
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 const FavoritesScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.heading}>--- Favorites ---</Text>
     </View>
-  )
-}
+  );
+};
 
-export default FavoritesScreen
+export default FavoritesScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 20,
+    height: 600,
+  },
   heading: {
     fontSize: 25,
     textAlign: 'center',
     fontWeight: 700,
-    marginVertical: 20
-  }
-})
+    marginVertical: 20,
+  },
+});

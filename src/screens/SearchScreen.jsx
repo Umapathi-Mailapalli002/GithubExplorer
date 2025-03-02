@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import {searchRepo} from '../services/api';
 import {FlatList} from 'react-native-gesture-handler';
 import notFoundImage from '../assets/not_found.png';
+import searchImage from '../assets/search_repo.webp'
 const SearchScreen = () => {
   const navigation = useNavigation();
   const [searchVal, setSearchVal] = useState('');
@@ -31,7 +32,7 @@ const SearchScreen = () => {
       if (searchVal) {
         fetchData();
       }
-    }, 3000);
+    }, 500);
 
     return () => clearTimeout(timer); // Cleanup the timer on unmount or dependency change
   }, [searchVal]);
@@ -49,7 +50,21 @@ const SearchScreen = () => {
         <View style={styles.searchbarContainer}>
           <SearchBar value={searchVal} onChange={setSearchVal} />
         </View>
-        {repos?.length > 0 ? (
+        {searchVal === '' ? <View>
+            <Image
+              style={{height: 300, width: '100%'}}
+              source={searchImage}
+            />
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontSize: 30,
+                textAlign: 'center',
+                color: theme.colors.onBackground,
+              }}>
+              Search Repositories
+            </Text>
+          </View> : repos?.length > 0 ? (
           <FlatList
             data={repos}
             renderItem={({item}) => (

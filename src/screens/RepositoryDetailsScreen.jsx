@@ -30,9 +30,8 @@ const RepositoryDetails = () => {
 
   return (
     <>
-    <ScrollView>
-    <View
-        style={[styles.container, {backgroundColor: theme.colors.background}]}>
+    <ScrollView style={[styles.container, {backgroundColor: theme.colors.background}]}>
+    <View>
         <Appbar.Header>
           <Appbar.BackAction
             onPress={() => {

@@ -27,7 +27,7 @@ const FavoritesScreen = () => {
   }, [repos])
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>--- Favorites ---</Text>
+      <Text style={[styles.heading, {color: theme.colors.onBackground}]}>--- Favorites ---</Text>
      {repos?.length > 0 ? 
           <FlatList
             data={repos}

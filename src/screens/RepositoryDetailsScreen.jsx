@@ -1,12 +1,13 @@
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Card, Text, useTheme, Appbar, Button, Chip} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 const RepositoryDetails = () => {
   const theme = useTheme();
   const navigation = useNavigation();
-
+  const router = useRoute()
+  const {state} = router.params || {};
+  console.log(state)
   const langColors = {
     JavaScript: '#f1e05a',
     TypeScript: '#3178c6',
@@ -64,7 +65,10 @@ const RepositoryDetails = () => {
             </Card.Content>
           </View>
           <Card.Content>
+            <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text variant="titleMedium">Repo:-</Text>
+            <Text variant="titleMedium">Created At:</Text>
+            </View>
             <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginVertical: 8}}>
             <Chip icon="source-fork">122</Chip> 
             <Chip icon="star-outline" >122</Chip>

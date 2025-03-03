@@ -15,7 +15,7 @@ const SearchScreen = () => {
   const [repos, setRepos] = useState([]);
   const theme = useTheme();
   const handleClick = (item) => {
-    navigation.navigate('repo-details', item);
+    navigation.navigate('repo-details', {state: item});
   }
   useEffect(() => {
     let timer;

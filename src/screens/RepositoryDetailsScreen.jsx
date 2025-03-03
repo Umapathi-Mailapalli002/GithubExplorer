@@ -2,6 +2,7 @@ import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Card, Text, useTheme, Appbar, Button, Chip} from 'react-native-paper';
 import React from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import { formatUpdatedTime } from '../utils/timeFormate';
 const RepositoryDetails = () => {
   const theme = useTheme();
   const navigation = useNavigation();
@@ -57,34 +58,32 @@ const RepositoryDetails = () => {
                 width: 100,
                 marginVertical: 6,
               }}
-              source={{uri: 'https://picsum.photos/700'}}
+              source={{uri: state?.owner?.avatar_url || 'https://avatars.githubusercontent.com/u/146647639?v=4'}}
             />
             <Card.Content style={{textAlign: 'center'}}>
-              <Text variant="titleLarge">Card title</Text>
-              <Text variant="titleMedium">@Card content</Text>
+              <Text variant="titleMedium">@{state?.owner?.login}</Text>
             </Card.Content>
           </View>
           <Card.Content>
-            <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: 10}}>
             <Text variant="titleMedium">Repo:-</Text>
-            <Text variant="titleMedium">Created At:</Text>
+            <Text variant="titleMedium">{formatUpdatedTime('Created at', state?.created_at)}</Text>
             </View>
             <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginVertical: 8}}>
-            <Chip icon="source-fork">122</Chip> 
-            <Chip icon="star-outline" >122</Chip>
-            <Chip icon="adjust" >122</Chip>
+            <Chip icon="source-fork">{state?.forks_count}</Chip> 
+            <Chip icon="star-outline" >{state?.stargazers_count}</Chip>
+            <Chip icon="adjust" >{state?.open_issues_count}</Chip>
 
             </View>
             
-            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Name</Text>
+            <Text style={{fontSize: 20, fontWeight: 'bold'}}>{state?.name}</Text>
             <Text variant="titleMedium">
-              this is my page for the github repos check it out for more
-              projects this is i more text of test the card{' '}
+              {state?.description}
             </Text>
-            <View style={{display: 'flex',flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-around', marginVertical: 8}}>
-            <Chip >Html</Chip> 
-            <Chip >Css</Chip>
-            <Chip >Javascript</Chip>
+            <View style={{display: 'flex',flexWrap: 'wrap', flexDirection: 'row',gap: 10, marginVertical: 8}}>
+            {state?.topics && state.topics.map((t) => (
+              <Chip key={t}>{t}</Chip>
+            ))}
 
             </View>
           </Card.Content>
@@ -94,7 +93,6 @@ const RepositoryDetails = () => {
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
-              gap: 170,
             }}>
             <View
               style={{
@@ -102,20 +100,22 @@ const RepositoryDetails = () => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 gap: 8,
+                position: 'absolute',
+                left: 0
               }}>
               <View
                 style={{
                   height: 12,
                   width: 12,
                   borderRadius: 50,
-                  backgroundColor: 'orange',
+                  backgroundColor: langColors[state?.language] || 'orange',
                 }}></View>
-              <Text variant="titleSmall">{'JavaScript'}</Text>
+              <Text variant="titleSmall">{state?.language}</Text>
             </View>
             <TouchableOpacity
               accessibilityRole="link"
               onPress={() =>
-                Linking.openURL('https://reactnative.dev/docs/touchableopacity')
+                Linking.openURL(state?.html_url)
               }
               style={{
                 backgroundColor: theme.colors.primary,

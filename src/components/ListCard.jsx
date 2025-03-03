@@ -94,7 +94,7 @@ const ListCard = ({title, img, des, langUsed, updatedDate, click}) => {
         </View>
 
         <Text>
-          {formatUpdatedTime(updatedDate) || 'Updated on Jul 15, 2024'}
+          {formatUpdatedTime('Updated on', updatedDate) || 'Updated on Jul 15, 2024'}
         </Text>
       </Card.Content>
     </Card>

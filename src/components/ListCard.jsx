@@ -3,9 +3,15 @@ import {StyleSheet, View} from 'react-native';
 import {Avatar, Card, IconButton, Text, useTheme} from 'react-native-paper';
 import {formatUpdatedTime} from '../utils/timeFormate';
 
-const ListCard = ({title, img, des, langUsed, updatedDate, click}) => {
+const ListCard = ({title, img, des, langUsed, updatedDate, click, onHeartClick, showFav}) => {
   const theme = useTheme();
   const [isLiked, setIsLiked] = useState(false);
+  const onClick = () => {
+    setIsLiked(!isLiked);
+    if (onHeartClick) {
+      onHeartClick(); // Call the function passed as a prop
+    }
+  };  
   const LeftContent = props => (
     <Avatar.Image
       size={40}
@@ -21,11 +27,11 @@ const ListCard = ({title, img, des, langUsed, updatedDate, click}) => {
         alignItems: 'flex-end',
         marginLeft: -15,
       }}>
-      <IconButton
+      {showFav && <IconButton
         icon={isLiked ? 'heart' : 'heart-outline'} // Toggle icon
         iconColor={isLiked ? 'red' : 'gray'} // Change color when filled
-        onPress={() => setIsLiked(!isLiked)} // Toggle state
-      />
+        onPress={onClick}
+      />}
     </View>
   );
 

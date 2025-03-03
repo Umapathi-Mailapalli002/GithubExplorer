@@ -1,6 +1,7 @@
 import {StyleSheet, View, Image} from 'react-native';
 import {Text, useTheme} from 'react-native-paper';
 import React, {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import SearchBar from '../components/SearchBar';
 import ListCard from '../components/ListCard';
 import {Appbar} from 'react-native-paper';
@@ -14,6 +15,7 @@ const SearchScreen = () => {
   const [searchVal, setSearchVal] = useState('');
   const [repos, setRepos] = useState([]);
   const theme = useTheme();
+
   const handleClick = (item) => {
     navigation.navigate('repo-details', {state: item});
   }
@@ -39,6 +41,27 @@ const SearchScreen = () => {
     return () => clearTimeout(timer); // Cleanup the timer on unmount or dependency change
   }, [searchVal]);
 
+
+  //Setting repo Async Storage for favorite
+  const handleClickFav = async (item) => {
+    try {
+      const storedFavs = await AsyncStorage.getItem('favorites');
+      let favorites = storedFavs ? JSON.parse(storedFavs) : [];
+  
+      const isAlreadyFav = favorites.some(fav => fav.id === item.id);
+      if (isAlreadyFav) {
+        favorites = favorites.filter(fav => fav.id !== item.id); // Remove if already favorite
+      } else {
+        favorites.push(item); // Add to favorites
+      }
+  
+      await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
+      console.log('Updated Favorites:', favorites);
+    } catch (error) {
+      console.error('Error saving favorite:', error);
+    }
+  };
+  
   return (
     <>
       <Appbar.Header>
@@ -77,6 +100,8 @@ const SearchScreen = () => {
                 updatedDate={item?.updated_at}
                 langUsed={item?.language}
                 click={() => handleClick(item)}
+                showFav={true}
+                onHeartClick={() => handleClickFav(item)}
               />
             )}
             keyExtractor={item => item.id}

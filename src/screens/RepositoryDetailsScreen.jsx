@@ -1,4 +1,4 @@
-import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Linking, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Card, Text, useTheme, Appbar, Button, Chip} from 'react-native-paper';
 import React from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -30,9 +30,10 @@ const RepositoryDetails = () => {
 
   return (
     <>
-      <View
+    <ScrollView>
+    <View
         style={[styles.container, {backgroundColor: theme.colors.background}]}>
-        <Appbar.Header sty>
+        <Appbar.Header>
           <Appbar.BackAction
             onPress={() => {
               navigation.navigate('Main');
@@ -128,6 +129,8 @@ const RepositoryDetails = () => {
           </Card.Actions>
         </Card>
       </View>
+    </ScrollView>
+      
     </>
   );
 };
@@ -136,7 +139,7 @@ export default RepositoryDetails;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    padding: 20,
     height: '100%',
   },
   heading: {

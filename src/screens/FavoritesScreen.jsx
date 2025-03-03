@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 import notFoundImage from '../assets/not_found.png';
 import { useTheme } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ListCard from '../components/ListCard';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 const FavoritesScreen = () => {
   const theme = useTheme();
   const navigation = useNavigation()
@@ -12,24 +12,19 @@ const FavoritesScreen = () => {
   const handleClick = (item) => {
     navigation.navigate('repo-details', {state: item});
   }
- // Function to fetch favorite items from AsyncStorage
- const fetchFav = async () => {
-  try {
-    const res = await AsyncStorage.getItem('favorites');
-    const parsedRes = res ? JSON.parse(res) : []; // Parse JSON string
-    setRepos(parsedRes);
-    console.log(parsedRes);
-  } catch (error) {
-    console.log('Error fetching favorites', error);
-  }
-};
-
-// Runs when the screen is focused (re-fetches data when navigating back)
-useFocusEffect(
-  useCallback(() => {
+  useEffect(() => {
+    const fetchFav = async() => {
+      try {
+        const res = await AsyncStorage.getItem('favorites')
+        const parsedRes = res ? JSON.parse(res) : []; // Parse JSON string
+        setRepos(parsedRes);
+        console.log(parsedRes);
+      } catch (error) {
+        console.log("Error on fethcing favorites", error);
+      }
+    }
     fetchFav();
-  }, [])
-);
+  }, [repos])
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>--- Favorites ---</Text>

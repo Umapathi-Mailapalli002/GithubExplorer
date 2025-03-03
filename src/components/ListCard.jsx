@@ -3,9 +3,9 @@ import {StyleSheet, View} from 'react-native';
 import {Avatar, Card, IconButton, Text, useTheme} from 'react-native-paper';
 import {formatUpdatedTime} from '../utils/timeFormate';
 
-const ListCard = ({title, img, des, langUsed, updatedDate, click, onHeartClick, showFav}) => {
+const ListCard = ({title, img, des, langUsed, updatedDate, click, onHeartClick, showFav, isFav}) => {
   const theme = useTheme();
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(isFav);
   const onClick = () => {
     setIsLiked(!isLiked);
     if (onHeartClick) {
